@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import {
-  LOGIN_USER
+  LOGIN_USER,
+  LOGOUT_USER
 } from './actions';
 
 function auth( state = {
@@ -10,6 +11,10 @@ function auth( state = {
     case LOGIN_USER:
       return {
         isAuthorized: true
+      };
+    case LOGOUT_USER:
+      return {
+        isAuthorized: false
       };
     default:
       return state;
