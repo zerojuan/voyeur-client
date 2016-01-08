@@ -47,7 +47,7 @@ module.exports = {
         loaders: [ 'style', 'css', 'less' ]
       },
       {
-        test: /\.jsx$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loaders: [ 'react-hot', 'babel-loader' ]
       },

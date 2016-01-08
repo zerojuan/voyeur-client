@@ -30,6 +30,7 @@
     "react-tap-event-plugin": "^0.2.1",
     "react-time": "^4.0.0",
     "redux": "^3.0.5",
+    "redux-logger": "^2.3.1",
     "redux-thunk": "^1.0.3"
   },
   "devDependencies": {
