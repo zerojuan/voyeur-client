@@ -2,14 +2,15 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import {IndexLink, Link} from 'react-router';
 
-import { loginUser } from '../actions';
+import { loginUser, checkLoginState } from '../actions';
 
 const LoginPage  = React.createClass({
   displayName: 'LoginPage',
   handleClick() {
     const { dispatch } = this.props;
 
-    dispatch( loginUser() );
+    // dispatch( loginUser() );
+    FB.login( dispatch( checkLoginState() ) );
   },
   render() {
     return (
