@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import {IndexLink, Link} from 'react-router';
 
-import { loginUser, checkLoginState } from '../actions';
+import { loginUser, checkLoginState, handleLoginResponse } from '../actions';
 
 const LoginPage  = React.createClass({
   displayName: 'LoginPage',
@@ -10,12 +10,14 @@ const LoginPage  = React.createClass({
     const { dispatch } = this.props;
 
     // dispatch( loginUser() );
-    FB.login( dispatch( checkLoginState() ) );
+    FB.login(function( response ) {
+      handleLoginResponse( dispatch )( response );
+    });
   },
   render() {
     return (
       <div>
-        <IndexLink onClick={this.handleClick} to='/'> Login </IndexLink>
+        <a onClick={this.handleClick}> Login </a>
       </div>
     );
   }

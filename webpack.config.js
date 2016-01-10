@@ -37,6 +37,9 @@ module.exports = {
   },
 
   module: {
+    noParse: [
+      /aws\-sdk/
+    ],
     loaders: [
       {
         test: /\.css$/,

@@ -1,8 +1,11 @@
 import Promise from 'es6-promise';
 
+import 'aws-sdk/dist/aws-sdk';
+const AWS = window.AWS;
+
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -12,6 +15,8 @@ import App from './app.jsx';
 import designerApp from './reducers';
 import HomePage from './pages/home.jsx';
 import LoginPage from './pages/login.jsx';
+
+import { history } from './actions';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -42,10 +47,10 @@ const requireAuth = bindCheckAuth( store, ( nextState, transition ) => {
     }
   );
 });
-//
+
 render( (
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={history}>
       <Route component={App} path='/' name='Designer'>
         <IndexRoute component={HomePage} name='Home' onEnter={requireAuth}/>
         <Route component={LoginPage} name='LoginPage' path='/login'/>
