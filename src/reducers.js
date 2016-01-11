@@ -3,8 +3,19 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   RECIEVED_USER_NOT_AUTHORIZED,
-  RECIEVED_USER_UNKNOWN
+  RECIEVED_USER_UNKNOWN,
+  REQUEST_LATEST_IMAGE,
+  RECIEVED_LATEST_IMAGE
 } from './actions';
+
+function latestImage( state = '', action ) {
+  switch ( action.type ) {
+    case RECIEVED_LATEST_IMAGE:
+      return action.data.url;
+    default:
+      return state;
+  }
+}
 
 function auth( state = {
   isAuthorized: true
@@ -38,7 +49,8 @@ function auth( state = {
 }
 
 const designerApp = combineReducers({
-  auth
+  auth,
+  latestImage
 });
 
 export default designerApp;

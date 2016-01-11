@@ -22,11 +22,13 @@ const Home = React.createClass({
 
 function mapStateToProps( state ) {
   const {
-    auth
+    auth,
+    latestImage
   } = state;
 
   return {
-    auth
+    auth,
+    latestImage
   };
 }
 

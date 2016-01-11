@@ -5,6 +5,8 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const RECIEVED_USER_NOT_AUTHORIZED = 'RECIEVED_USER_NOT_AUTHORIZED';
 export const RECIEVED_USER_UNKNOWN = 'RECIEVED_USER_UNKNOWN';
+export const REQUEST_LATEST_IMAGE = 'REQUEST_LATEST_IMAGE';
+export const RECIEVE_LATEST_IMAGE = 'RECIEVE_LATEST_IMAGE';
 
 export const history = createHashHistory();
 
@@ -24,6 +26,19 @@ function recievedUserNotAuthorized( response ) {
   };
 }
 
+function requestLatestImage() {
+  return {
+    type: REQUEST_LATEST_IMAGE
+  };
+}
+
+function recievedLatestImage( json ) {
+  return {
+    type: RECIEVED_LATEST_IMAGE,
+    data: json
+  };
+}
+
 export function loginUser( response ) {
   history.replaceState( null, '/' );
   const { authResponse } = response;
@@ -40,6 +55,15 @@ export function logoutUser() {
     type: LOGOUT_USER
   };
 };
+
+export function fetchLatestImage() {
+  return dispatch => {
+    dispatch( requestLatestImage() );
+    return fetch( 'http://apigatewayapi:7171/' )
+      .then( response => response.json() )
+      .then( json => dispatch( receiveLatestImage( json ) ) );
+  };
+}
 
 export function handleLoginResponse( dispatch ) {
   return response => {
