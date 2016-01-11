@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import {IndexLink, Link} from 'react-router';
 
-import { logoutUser } from '../actions';
+import { logoutUser, fetchLatestImage } from '../actions';
 
 const Home = React.createClass({
   displayName: 'HomePage',
@@ -10,10 +10,15 @@ const Home = React.createClass({
     const { dispatch } = this.props;
     dispatch( logoutUser() );
   },
+  loadLatest() {
+    const { dispatch } = this.props;
+    dispatch( fetchLatestImage() );
+  },
   render() {
     return (
       <div>
         Hello this is the homepage
+        <a onClick={this.loadLatest}>Load Latest</a>
         <Link to='/login' onClick={this.handleLogout}>Logout</Link>
       </div>
     );

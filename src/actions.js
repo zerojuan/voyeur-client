@@ -11,6 +11,7 @@ export const RECIEVE_LATEST_IMAGE = 'RECIEVE_LATEST_IMAGE';
 export const history = createHashHistory();
 
 const AWS = window.AWS;
+let Lambda;
 
 function recievedUserUnknown( response ) {
   return {
@@ -59,9 +60,26 @@ export function logoutUser() {
 export function fetchLatestImage() {
   return dispatch => {
     dispatch( requestLatestImage() );
-    return fetch( 'http://apigatewayapi:7171/' )
-      .then( response => response.json() )
-      .then( json => dispatch( receiveLatestImage( json ) ) );
+    const p = new Promise(
+      ( resolve, reject ) => {
+        const params = {
+          FunctionName: 'voyeur-getlatest',
+          InvocationType: 'RequestResponse',
+          LogType: 'None'
+        };
+        Lambda.invoke( params, function( err, data ) {
+          if ( err ) {
+            console.log( err, err.stack );
+            reject( err );
+          } else {
+            console.log( data );
+            resolve( data );
+          }
+        });
+      }
+    );
+    return p
+      .then( response => dispatch( recieveLatestImage( json ) ) );
   };
 }
 
@@ -78,6 +96,7 @@ export function handleLoginResponse( dispatch ) {
       });
       AWS.config.credentials.get(function() {
         console.log( 'Gotten creds...' );
+        Lambda = new AWS.Lambda({ apiVersion: '2015-03-31' });
         dispatch( loginUser( response ) );
       });
     } else if ( response.status === 'not_authorized' ) {
