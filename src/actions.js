@@ -63,7 +63,7 @@ export function fetchLatestImage() {
     const p = new Promise(
       ( resolve, reject ) => {
         const params = {
-          FunctionName: 'voyeur-getlatest',
+          FunctionName: 'voyeur-getLatest',
           InvocationType: 'RequestResponse',
           LogType: 'None'
         };

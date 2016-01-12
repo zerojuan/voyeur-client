@@ -1,0 +1,11 @@
+{
+  "name": "GetLatestImageLambda",
+  "version": "0.0.1",
+  "description": "The webclient for the webcam app",
+  "main": "index.js",
+  "dependencies": {
+    "async": "^1.5.2",
+    "aws-cloudfront-sign": "github:danbrianwhite/aws-cloudfront-sign",
+    "aws-sdk": "^2.2.28"
+  }
+}

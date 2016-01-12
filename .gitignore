@@ -1,4 +1,5 @@
 node_modules
 npm-debug.log
-
+secret.pem
+Archive.zip
 .DS_Store
