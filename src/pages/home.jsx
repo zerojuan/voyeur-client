@@ -18,6 +18,7 @@ const Home = React.createClass({
     return (
       <div>
         Hello this is the homepage
+        <img src={this.props.latestImage}></img>
         <a onClick={this.loadLatest}>Load Latest</a>
         <Link to='/login' onClick={this.handleLogout}>Logout</Link>
       </div>

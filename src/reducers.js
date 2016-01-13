@@ -11,7 +11,9 @@ import {
 function latestImage( state = '', action ) {
   switch ( action.type ) {
     case RECIEVED_LATEST_IMAGE:
-      return action.data.url;
+      console.log( action );
+      let data = action.data.replace( /"/g,"" );
+      return data;
     default:
       return state;
   }

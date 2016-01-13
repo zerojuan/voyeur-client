@@ -6,7 +6,7 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 export const RECIEVED_USER_NOT_AUTHORIZED = 'RECIEVED_USER_NOT_AUTHORIZED';
 export const RECIEVED_USER_UNKNOWN = 'RECIEVED_USER_UNKNOWN';
 export const REQUEST_LATEST_IMAGE = 'REQUEST_LATEST_IMAGE';
-export const RECIEVE_LATEST_IMAGE = 'RECIEVE_LATEST_IMAGE';
+export const RECIEVED_LATEST_IMAGE = 'RECIEVE_LATEST_IMAGE';
 
 export const history = createHashHistory();
 
@@ -79,7 +79,11 @@ export function fetchLatestImage() {
       }
     );
     return p
-      .then( response => dispatch( recieveLatestImage( json ) ) );
+      .then( response => {
+        console.log( 'Dispatching??' );
+        dispatch( recievedLatestImage( response.Payload ) );
+        console.log( 'Really...' );
+      });
   };
 }
 

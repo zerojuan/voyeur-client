@@ -1,5 +1,6 @@
 var AWS = require( 'aws-sdk' );
 var async = require( 'async' );
+var qs = require( 'querystring' );
 var cfSign = require( 'aws-cloudfront-sign' );
 
 var dynamodb = new AWS.DynamoDB({
@@ -22,9 +23,14 @@ exports.handler = function( event, context ) {
       dynamodb.getItem( params, done );
     },
     function signURL( data, done ) {
-      var item = 'http://d16rnfarbxjbfx.cloudfront.net/' + data.Item.filename.S;
+      var file = data.Item.filename.S.split( '/' );
+
+      var escaped = qs.escape( file[ 1 ] );
+      var item = 'http://d16rnfarbxjbfx.cloudfront.net/' +
+          file[ 0 ] + '/' + escaped;
       var options = {
-        keypairId: 'APKAJFRK2P45U3UPDJMQ',
+        expireTime: new Date().getTime() + 30000,
+        keypairId: 'APKAI4Z5RDMEA3F7P3KQ',
         privateKeyPath: __dirname + '/secret.pem'
       };
       var signedUrl = cfSign.getSignedUrl( item, options );
