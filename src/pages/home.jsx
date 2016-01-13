@@ -6,6 +6,14 @@ import { logoutUser, fetchLatestImage } from '../actions';
 
 const Home = React.createClass({
   displayName: 'HomePage',
+  componentDidMount() {
+    this.interval = setInterval( this.loadLatest, 5000 );
+    this.loadLatest();
+  },
+  componentWillUnmount() {
+    // remove setInterval
+    clearInterval( this.interval );
+  },
   handleLogout() {
     const { dispatch } = this.props;
     dispatch( logoutUser() );
@@ -15,10 +23,10 @@ const Home = React.createClass({
     dispatch( fetchLatestImage() );
   },
   render() {
+    const img = this.props.latestImage || './images/default.png';
     return (
       <div>
-        Hello this is the homepage
-        <img src={this.props.latestImage}></img>
+        <img src={img}></img>
         <a onClick={this.loadLatest}>Load Latest</a>
         <Link to='/login' onClick={this.handleLogout}>Logout</Link>
       </div>

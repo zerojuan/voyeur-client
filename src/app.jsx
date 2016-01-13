@@ -37,7 +37,6 @@ const App  = React.createClass({
   render() {
     return (
       <div>
-        You have to login
         { this.props.children }
       </div>
     );
