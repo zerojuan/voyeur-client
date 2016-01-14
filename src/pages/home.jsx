@@ -26,8 +26,7 @@ const Home = React.createClass({
     const img = this.props.latestImage || './images/default.png';
     return (
       <div>
-        <img src={img}></img>
-        <a onClick={this.loadLatest}>Load Latest</a>
+        <img src={img} width="352" height="288"></img>
         <Link to='/login' onClick={this.handleLogout}>Logout</Link>
       </div>
     );

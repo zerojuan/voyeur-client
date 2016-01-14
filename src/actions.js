@@ -102,6 +102,7 @@ export function handleLoginResponse( dispatch ) {
         console.log( 'Gotten creds...' );
         Lambda = new AWS.Lambda({ apiVersion: '2015-03-31' });
         dispatch( loginUser( response ) );
+        dispatch( fetchLatestImage() );
       });
     } else if ( response.status === 'not_authorized' ) {
       dispatch( recievedUserNotAuthorized( response ) );

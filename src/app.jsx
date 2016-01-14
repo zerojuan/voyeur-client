@@ -4,6 +4,8 @@ import {
   handleLoginResponse
 } from './actions';
 
+import AppBar from 'material-ui/lib/app-bar';
+
 const App  = React.createClass({
   displayName: 'LoginPage',
   componentDidMount() {
@@ -37,6 +39,7 @@ const App  = React.createClass({
   render() {
     return (
       <div>
+        <h1>Voyeur Cam</h1>
         { this.props.children }
       </div>
     );

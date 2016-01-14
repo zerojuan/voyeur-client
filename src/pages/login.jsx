@@ -17,6 +17,7 @@ const LoginPage  = React.createClass({
   render() {
     return (
       <div>
+        <p>Our privacy, for your facebook privacy. Fair is fair.</p>
         <a onClick={this.handleClick}> Login </a>
       </div>
     );
