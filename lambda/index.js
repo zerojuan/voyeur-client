@@ -8,7 +8,7 @@ var dynamodb = new AWS.DynamoDB({
 });
 
 exports.handler = function( event, context ) {
-  console.log( 'Executing handler' );
+  // TODO: save facebook name and userId, increment the view count
   // context.succeed( event.key1 );
   var params = {
     TableName: 'bulaga-cam',

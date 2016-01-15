@@ -4,6 +4,8 @@ import {IndexLink, Link} from 'react-router';
 
 import { logoutUser, fetchLatestImage } from '../actions';
 
+import { Row, Col, Card } from 'elemental';
+
 const Home = React.createClass({
   displayName: 'HomePage',
   componentDidMount() {
@@ -26,8 +28,17 @@ const Home = React.createClass({
     const img = this.props.latestImage || './images/default.png';
     return (
       <div>
-        <img src={img} width="352" height="288"></img>
-        <Link to='/login' onClick={this.handleLogout}>Logout</Link>
+        <Row>
+          <Card>
+            <img src={img} width='352' height='288'></img>
+          </Card>
+        </Row>
+        <Row>
+          <Col>
+            <Link to='/login' onClick={this.handleLogout}>Logout</Link>
+          </Col>
+        </Row>
+
       </div>
     );
   }

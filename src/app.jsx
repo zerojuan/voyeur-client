@@ -6,6 +6,8 @@ import {
 
 import AppBar from 'material-ui/lib/app-bar';
 
+import { Row, Col } from 'elemental';
+
 const App  = React.createClass({
   displayName: 'LoginPage',
   componentDidMount() {
@@ -39,8 +41,15 @@ const App  = React.createClass({
   render() {
     return (
       <div>
-        <h1>Voyeur Cam</h1>
-        { this.props.children }
+        <Row>
+          <Col xs='33%' sm='25%' lg='33.333%'>
+          <Col xs='33%' sm='25%' lg='33.333%'>
+            <h1>Voyeur Cam</h1>
+            { this.props.children }
+          </Col>
+          <Col xs='33%' sm='25%' lg='33.333%'>
+        </Row>
+
       </div>
     );
   }
