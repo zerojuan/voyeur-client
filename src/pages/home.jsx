@@ -38,7 +38,6 @@ const Home = React.createClass({
             <Link to='/login' onClick={this.handleLogout}>Logout</Link>
           </Col>
         </Row>
-
       </div>
     );
   }

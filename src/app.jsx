@@ -42,12 +42,12 @@ const App  = React.createClass({
     return (
       <div>
         <Row>
-          <Col xs='33%' sm='25%' lg='33.333%'>
+          <Col xs='33%' sm='25%' lg='33.333%'></Col>
           <Col xs='33%' sm='25%' lg='33.333%'>
             <h1>Voyeur Cam</h1>
             { this.props.children }
           </Col>
-          <Col xs='33%' sm='25%' lg='33.333%'>
+          <Col xs='33%' sm='25%' lg='33.333%'></Col>
         </Row>
 
       </div>

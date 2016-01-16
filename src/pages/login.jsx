@@ -19,7 +19,7 @@ const LoginPage  = React.createClass({
   render() {
     return (
       <Row>
-        <Col sm='1/3'>
+        <Col>
           <p>Our privacy, for your facebook privacy. Fair is fair.</p>
           <Button type='primary' onClick={this.handleClick}> Facebook Login </Button>
         </Col>
