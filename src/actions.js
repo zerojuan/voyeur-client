@@ -7,6 +7,7 @@ export const RECIEVED_USER_NOT_AUTHORIZED = 'RECIEVED_USER_NOT_AUTHORIZED';
 export const RECIEVED_USER_UNKNOWN = 'RECIEVED_USER_UNKNOWN';
 export const REQUEST_LATEST_IMAGE = 'REQUEST_LATEST_IMAGE';
 export const RECIEVED_LATEST_IMAGE = 'RECIEVE_LATEST_IMAGE';
+export const LOADED_USER_INFO = 'LOADED_USER_INFO';
 
 export const history = createHashHistory();
 
@@ -99,9 +100,10 @@ export function handleLoginResponse( dispatch ) {
         }
       });
       AWS.config.credentials.get(function() {
-        console.log( 'Gotten creds...' );
+        console.log( 'Gotten creds...', response );
         Lambda = new AWS.Lambda({ apiVersion: '2015-03-31' });
         dispatch( loginUser( response ) );
+        getUserDetails( response.authResponse.userID )( dispatch );
         dispatch( fetchLatestImage() );
       });
     } else if ( response.status === 'not_authorized' ) {
@@ -110,6 +112,35 @@ export function handleLoginResponse( dispatch ) {
       dispatch( recievedUserUnknown( response ) );
     }
   };
+};
+
+export function getUserDetails( userId ) {
+    return dispatch => {
+        console.log( 'Get user details' );
+        const p = new Promise (
+            ( resolve, reject ) => {
+                FB.api(
+                    "/" + userId,
+                    function (response) {
+                        console.log('hello', response);
+                      if (response && !response.error) {
+                        console.log( 'userdetails response: ', response );
+                        resolve( response );
+                      }
+                    }
+                );
+            }
+        );
+
+        return p
+            .then( response => {
+                console.log( '===============================');
+                dispatch( {
+                    type: LOADED_USER_INFO,
+                    response: response
+                })
+            });
+    }
 };
 
 export function checkLoginState() {
