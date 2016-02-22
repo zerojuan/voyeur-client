@@ -59,7 +59,9 @@ function users( state = [{
     switch( action.type ) {
         case LOADED_USER_INFO:
             console.log( 'Loaded User here? ', action );
-            return state;
+            return [{
+              name: action.response.name
+            }];
         default:
             return state;
     }
