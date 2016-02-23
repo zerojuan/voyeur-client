@@ -41,7 +41,7 @@ const Home = React.createClass({
                     this.props.users.map( ( user ) => {
 
                         return (
-                            <li>{ user.name }</li>
+                            <li>{ user.name } points: <b>{ this.props.userScore }</b></li>
                         );
                     })
                 }
@@ -62,13 +62,15 @@ function mapStateToProps( state ) {
   const {
     auth,
     users,
-    latestImage
+    latestImage,
+    userScore
   } = state;
 
   return {
     auth,
     users,
-    latestImage
+    latestImage,
+    userScore
   };
 }
 

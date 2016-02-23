@@ -67,10 +67,20 @@ function users( state = [{
     }
 }
 
+function userScore( state = 0, action ) {
+    switch( action.type ) {
+        case RECIEVED_LATEST_IMAGE:
+            return state + 1;
+        default:
+            return state;
+    }
+}
+
 const designerApp = combineReducers({
   auth,
   users,
-  latestImage
+  latestImage,
+  userScore
 });
 
 export default designerApp;
