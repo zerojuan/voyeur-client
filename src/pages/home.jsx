@@ -41,7 +41,9 @@ const Home = React.createClass({
                     this.props.users.map( ( user ) => {
 
                         return (
-                            <li>{ user.name } points: <b>{ this.props.userScore }</b></li>
+                            <li>{ user.name } points:
+                                <b>{ ( this.props.latestImage ) ? this.props.userScore : 0 }</b>
+                            </li>
                         );
                     })
                 }
