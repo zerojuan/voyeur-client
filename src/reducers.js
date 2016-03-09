@@ -1,3 +1,5 @@
+
+import { getUserDetails } from './actions';
 import { combineReducers } from 'redux';
 import {
   LOGIN_USER,
@@ -5,7 +7,8 @@ import {
   RECIEVED_USER_NOT_AUTHORIZED,
   RECIEVED_USER_UNKNOWN,
   REQUEST_LATEST_IMAGE,
-  RECIEVED_LATEST_IMAGE
+  RECIEVED_LATEST_IMAGE,
+  LOADED_USER_INFO
 } from './actions';
 
 function latestImage( state = '', action ) {
@@ -20,7 +23,7 @@ function latestImage( state = '', action ) {
 }
 
 function auth( state = {
-  isAuthorized: true
+  isAuthorized: false
 }, action ) {
   switch ( action.type ) {
     case LOGIN_USER:
@@ -50,9 +53,34 @@ function auth( state = {
   }
 }
 
+function users( state = [{
+    name: 'Juan de la'
+}], action ) {
+    switch( action.type ) {
+        case LOADED_USER_INFO:
+            console.log( 'Loaded User here? ', action );
+            return [{
+              name: action.response.name
+            }];
+        default:
+            return state;
+    }
+}
+
+function userScore( state = 0, action ) {
+    switch( action.type ) {
+        case RECIEVED_LATEST_IMAGE:
+            return state + 1;
+        default:
+            return state;
+    }
+}
+
 const designerApp = combineReducers({
   auth,
-  latestImage
+  users,
+  latestImage,
+  userScore
 });
 
 export default designerApp;

@@ -35,6 +35,23 @@ const Home = React.createClass({
         </Row>
         <Row>
           <Col>
+            <p>Users:</p>
+            <ul>
+                {
+                    this.props.users.map( ( user ) => {
+
+                        return (
+                            <li>{ user.name } points:
+                                <b>{ ( this.props.latestImage ) ? this.props.userScore : 0 }</b>
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             <Link to='/login' onClick={this.handleLogout}>Logout</Link>
           </Col>
         </Row>
@@ -46,12 +63,16 @@ const Home = React.createClass({
 function mapStateToProps( state ) {
   const {
     auth,
-    latestImage
+    users,
+    latestImage,
+    userScore
   } = state;
 
   return {
     auth,
-    latestImage
+    users,
+    latestImage,
+    userScore
   };
 }
 
